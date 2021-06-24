@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetNinjaAPI", "BudgetNinjaAPI.csproj", "{0BCD0573-B5BD-4F79-8887-CCD84061062C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetNinja.Common", "BudgetNinja.Common\BudgetNinja.Common.csproj", "{D267D3F9-6F7F-481C-8F5A-C2040F4E20C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetNinjaAPI", "BudgetNinja.API\BudgetNinjaAPI.csproj", "{8FDF388F-626A-49EF-A507-2E0E37A14266}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetNinja.API.BL", "BudgetNinja.API.BL\BudgetNinja.API.BL.csproj", "{ECEBC3A5-0963-4B40-8574-C302B64267BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +15,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{0BCD0573-B5BD-4F79-8887-CCD84061062C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BCD0573-B5BD-4F79-8887-CCD84061062C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BCD0573-B5BD-4F79-8887-CCD84061062C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BCD0573-B5BD-4F79-8887-CCD84061062C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D267D3F9-6F7F-481C-8F5A-C2040F4E20C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D267D3F9-6F7F-481C-8F5A-C2040F4E20C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D267D3F9-6F7F-481C-8F5A-C2040F4E20C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D267D3F9-6F7F-481C-8F5A-C2040F4E20C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FDF388F-626A-49EF-A507-2E0E37A14266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FDF388F-626A-49EF-A507-2E0E37A14266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FDF388F-626A-49EF-A507-2E0E37A14266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FDF388F-626A-49EF-A507-2E0E37A14266}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECEBC3A5-0963-4B40-8574-C302B64267BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECEBC3A5-0963-4B40-8574-C302B64267BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECEBC3A5-0963-4B40-8574-C302B64267BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECEBC3A5-0963-4B40-8574-C302B64267BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
