@@ -1,4 +1,5 @@
 using System;
+using BudgetNinjaAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -21,6 +22,8 @@ namespace BudgetNinjaAPI
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddSingleton<IInMemItemsRepository, InMemItemsRepository>();
+
       services.Configure<ServiceSettings>(Configuration.GetSection(nameof(ServiceSettings)));
 
       services.AddControllers();
@@ -30,8 +33,9 @@ namespace BudgetNinjaAPI
       });
 
       services.AddHttpClient<WeatherClient>()
-      .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(10, retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))))
-      .AddTransientHttpErrorPolicy(builder => builder.CircuitBreakerAsync(3,  TimeSpan.FromSeconds(10)));
+        .AddTransientHttpErrorPolicy(builder => builder.WaitAndRetryAsync(10,
+          retryAttempt => TimeSpan.FromSeconds(Math.Pow(2, retryAttempt))))
+        .AddTransientHttpErrorPolicy(builder => builder.CircuitBreakerAsync(3, TimeSpan.FromSeconds(10)));
 
       services.AddHealthChecks()
         .AddCheck<ExternalEndpointHealthCheck>("OpenWeather");
