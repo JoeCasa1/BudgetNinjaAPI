@@ -1,4 +1,3 @@
-using System;
 using BudgetNinjaAPI.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -7,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Polly;
+using System;
 
 namespace BudgetNinjaAPI
 {

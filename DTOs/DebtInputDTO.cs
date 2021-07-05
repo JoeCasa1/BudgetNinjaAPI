@@ -6,10 +6,13 @@ namespace BudgetNinjaAPI.DTOs
   {
     [Required]
     public double Balance { get; set; }
+
     [Required]
     public double InterestRate { get; set; }
+
     [Required]
     public double MinimumPayment { get; set; }
+
     [Required]
     public string Name { get; set; }
   }

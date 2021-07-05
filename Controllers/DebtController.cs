@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using System.Threading.Tasks;
+﻿using BudgetNinjaAPI.DTOs;
 using BudgetNinjaAPI.Models;
 using BudgetNinjaAPI.Repositories;
-using BudgetNinjaAPI.DTOs;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
+using System;
+using System.Collections.Generic;
 
 namespace BudgetNinjaAPI.Controllers
 {
@@ -15,6 +13,7 @@ namespace BudgetNinjaAPI.Controllers
   public class DebtController : ControllerBase
   {
     private readonly ILogger<DebtController> _logger;
+
     private readonly IInMemItemsRepository _repository;
 
     public DebtController(ILogger<DebtController> logger, IInMemItemsRepository repository)

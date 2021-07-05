@@ -7,7 +7,9 @@ namespace BudgetNinjaAPI.Repositories
   public interface IInMemItemsRepository
   {
     IEnumerable<BudgetEntry> GetBudgetEntries();
+
     BudgetEntry GetBudgetEntry(Guid id);
+
     IEnumerable<BudgetEntry> GetDebts();
 
     void CreateBudgetEntry(BudgetEntry entry);
