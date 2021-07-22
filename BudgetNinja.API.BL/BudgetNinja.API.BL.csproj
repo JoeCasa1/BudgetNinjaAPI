@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+      <RootNamespace>NinjaSoft.Tools.Finance.BudgetNinja.API.BL</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+      <ProjectReference Include="..\BudgetNinja.Common\BudgetNinja.Common.csproj" />
+  </ItemGroup>
+
+</Project>
