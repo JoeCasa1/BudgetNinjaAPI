@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BudgetNinjaAPI.Controllers
 {
@@ -14,25 +15,25 @@ namespace BudgetNinjaAPI.Controllers
   {
     private readonly ILogger<DebtController> _logger;
 
-    private readonly IInMemItemsRepository _repository;
+    private readonly IBudgetEntryRepository _repository;
 
-    public DebtController(ILogger<DebtController> logger, IInMemItemsRepository repository)
+    public DebtController(ILogger<DebtController> logger, IBudgetEntryRepository repository)
     {
       _logger = logger ?? throw new ArgumentNullException(nameof(logger));
       _repository = repository ?? throw new ArgumentNullException(nameof(repository));
     }
 
     [HttpGet]
-    public IEnumerable<BudgetEntry> GetBudgetEntriesAsync()
+    public async Task<IEnumerable<BudgetEntry>> GetBudgetEntriesAsync()
     {
-      var debts = _repository.GetDebts();
+      var debts = await _repository.GetDebtsAsync();
       return debts;
     }
 
     [HttpGet("{id}")]
-    public ActionResult<BudgetEntry> GetBudgetEntry(Guid id)
+    public async Task<ActionResult<BudgetEntry>> GetBudgetEntryAsync(Guid id)
     {
-      var debt = _repository.GetBudgetEntry(id);
+      var debt = await _repository.GetBudgetEntryAsync(id);
 
       if (debt == null)
       {
@@ -43,7 +44,7 @@ namespace BudgetNinjaAPI.Controllers
     }
 
     [HttpPost]
-    public ActionResult<BudgetEntry> CreateDebtEntry(DebtInputDTO entry)
+    public async Task<ActionResult<BudgetEntry>> CreateDebtEntryAsync(DebtInputDTO entry)
     {
       BudgetEntry newEntry = new()
       {
@@ -56,15 +57,15 @@ namespace BudgetNinjaAPI.Controllers
         Category = "Debt"
       };
 
-      _repository.CreateBudgetEntry(newEntry);
+      await _repository.CreateBudgetEntryAsync(newEntry);
 
-      return CreatedAtAction(nameof(GetBudgetEntry), new { id = newEntry.Id }, newEntry);
+      return CreatedAtAction(nameof(GetBudgetEntryAsync), new { id = newEntry.Id }, newEntry);
     }
 
     [HttpPut("{id}")]
-    public ActionResult UpdateBudgetEntry(Guid id, DebtUpdateDTO entry)
+    public async Task<ActionResult> UpdateBudgetEntryAsync(Guid id, DebtUpdateDTO entry)
     {
-      var existingItem = _repository.GetBudgetEntry(id);
+      var existingItem = await _repository.GetBudgetEntryAsync(id);
       if (existingItem is null)
       {
         return NotFound();
@@ -78,21 +79,21 @@ namespace BudgetNinjaAPI.Controllers
         MininmumPayment = entry.MinimumPayment
       };
 
-      _repository.UpdateBudgetEntry(updatedItem);
+      await _repository.UpdateBudgetEntryAsync(updatedItem);
 
       return NoContent();
     }
 
     [HttpDelete("{id}")]
-    public ActionResult DeleteBudgetEntry(Guid id)
+    public async Task<ActionResult> DeleteBudgetEntryAsync(Guid id)
     {
-      var existingItem = _repository.GetBudgetEntry(id);
+      var existingItem = await _repository.GetBudgetEntryAsync(id);
       if (existingItem is null)
       {
         return NotFound();
       }
 
-      _repository.DeleteBudgetEntry(id);
+      await _repository.DeleteBudgetEntryAsync(id);
       return NoContent();
     }
   }

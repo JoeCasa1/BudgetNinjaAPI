@@ -2,10 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BudgetNinjaAPI.Repositories
 {
-  public class InMemItemsRepository : IInMemItemsRepository
+  public class InMemItemsRepository : IBudgetEntryRepository
   {
     private readonly List<BudgetEntry> entries = new()
     {
@@ -21,36 +22,39 @@ namespace BudgetNinjaAPI.Repositories
       }
     };
 
-    public void CreateBudgetEntry(BudgetEntry entry)
+    public async Task CreateBudgetEntryAsync(BudgetEntry entry)
     {
       entries.Add(entry);
+      await Task.CompletedTask;
     }
 
-    public IEnumerable<BudgetEntry> GetBudgetEntries()
+    public async Task<IEnumerable<BudgetEntry>> GetBudgetEntriesAsync()
     {
-      return entries;
+      return await Task.FromResult(entries);
     }
 
-    public BudgetEntry GetBudgetEntry(Guid id)
+    public async Task<BudgetEntry> GetBudgetEntryAsync(Guid id)
     {
-      return entries.FirstOrDefault(x => x.Id == id);
+      return await Task.FromResult(entries.FirstOrDefault(x => x.Id == id));
     }
 
-    public IEnumerable<BudgetEntry> GetDebts()
+    public async Task<IEnumerable<BudgetEntry>> GetDebtsAsync()
     {
-      return entries.Where(x => x.EntryType == BudgetEntryType.Debt);
+      return await Task.FromResult(entries.Where(x => x.EntryType == BudgetEntryType.Debt));
     }
 
-    public void UpdateBudgetEntry(BudgetEntry entry)
+    public async Task UpdateBudgetEntryAsync(BudgetEntry entry)
     {
       var index = entries.FindIndex(itemToUpdate => itemToUpdate.Id == entry.Id);
       entries[index] = entry;
+      await Task.CompletedTask;
     }
 
-    public void DeleteBudgetEntry(Guid id)
+    public async Task DeleteBudgetEntryAsync(Guid id)
     {
       var index = entries.FindIndex(x => x.Id == id);
       entries.RemoveAt(index);
+      await Task.CompletedTask;
     }
   }
 }
